@@ -22,7 +22,7 @@
 (define_insn "*zero_extendsidi2_zcee"
   [(set (match_operand:DI 0 "register_operand" "=r,r")
 	(zero_extend:DI (match_operand:SI 1 "nonimmediate_operand" "r,m")))]
-  "TARGET_64BIT && TARGET_ZCEE"
+  "TARGET_64BIT && (TARGET_ZCEE || TARGET_ZEXT)"
   "@
    zext.w\t%0,%1
    lwu\t%0,%1"
@@ -32,7 +32,7 @@
 (define_insn "*zero_extendhi<GPR:mode>2_zcee"
   [(set (match_operand:GPR 0 "register_operand" "=r,r")
         (zero_extend:GPR (match_operand:HI 1 "nonimmediate_operand" "r,m")))]
-  "TARGET_ZCEE"
+  "TARGET_ZCEE || TARGET_ZEXT"
   "@
    zext.h\t%0,%1
    lhu\t%0,%1"
@@ -43,7 +43,7 @@
   [(set (match_operand:SUPERQI   0 "register_operand"     "=r,r")
 	(sign_extend:SUPERQI
 	    (match_operand:SHORT 1 "nonimmediate_operand" " r,m")))]
-  "TARGET_ZCEE"
+  "TARGET_ZCEE || TARGET_SEXT"
   "@
    sext.<SHORT:size>\t%0,%1
    l<SHORT:size>\t%0,%1"
@@ -54,7 +54,7 @@
   [(set (match_operand:GPR    0 "register_operand"     "=r,r")
 	(zero_extend:GPR
 	    (match_operand:HI 1 "nonimmediate_operand" " r,m")))]
-  "TARGET_ZCEE"
+  "TARGET_ZCEE || TARGET_ZEXT"
   "@
    zext.h\t%0,%1
    lhu\t%0,%1"

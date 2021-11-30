@@ -4663,10 +4663,10 @@ riscv_file_start (void)
   if (! riscv_mrelax)
     fprintf (asm_out_file, "\t.option norelax\n");
 
-  if (riscv_mzce_sext)
+  if (TARGET_ZCEE || TARGET_SEXT)
     fprintf (asm_out_file, "\t.option zce-sext\n");
 
-  if (riscv_mzce_zext)
+  if (TARGET_ZCEE || TARGET_ZEXT)
     fprintf (asm_out_file, "\t.option zce-zext\n");
 
   if (riscv_mzce_cmul)
